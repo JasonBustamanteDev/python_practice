@@ -12,7 +12,7 @@ class LinkedList:
         self.tail = starter_node
         self.length = 1
 
-    # Add node to end
+    # Add node to end O(1)
     def append(self, val):
         new_node = Node(val)
         if self.length == 0:
@@ -24,7 +24,7 @@ class LinkedList:
             self.tail = new_node
             self.length += 1
 
-    # Add node to start
+    # Add node to start O(1)
     def prepend(self, val):
         new_node = Node(val)
         if self.length == 0:
@@ -36,7 +36,7 @@ class LinkedList:
             self.head = new_node
             self.length += 1
 
-    # Remove node from end, and return removed value
+    # Remove node from end, then return removed value O(n)
     def pop(self):
         removed_val = None
 

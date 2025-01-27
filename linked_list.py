@@ -38,32 +38,26 @@ class LinkedList:
 
     # Remove node from end, and return removed value
     def pop(self):
-        # If list is empty
+        removed_val = None
+        
         if self.length == 0:
             return None
-
-        removed_val = None
-
-        # If list only has 1 node left
-        if self.length == 1:
+        elif self.length == 1:
             removed_val = self.head.value
-            self.head = None
-            self.tail = None
-            self.length = 0
-            return removed_val
+            self.head, self.tail, self.length = None, None, 0
+        else:
+            second_last_node = None # will be set equal to second
+            for i in range(self.length - 1):
+                if i == 0:
+                    second_last_node = self.head
+                else:
+                    second_last_node = second_last_node.next
 
-        # If list has more than 1 node left, find the second last one
-        current_node = None
-        for i in range(self.length - 1):
-            if i == 0:
-                current_node = self.head
-            else:
-                current_node = current_node.next
+            removed_val = second_last_node.next.value
+            second_last_node.next = None
+            self.tail = second_last_node
+            self.length -= 1
 
-        removed_val = current_node.next.value
-        current_node.next = None
-        self.tail = current_node
-        self.length -= 1
         return removed_val
 
     def pop_first(self):
@@ -102,7 +96,7 @@ class LinkedList:
 
 linked_list = LinkedList(4)
 linked_list.prepend(7)
-linked_list.append(10)
+# linked_list.append(10)
 linked_list.print_list()
 print("---------------------")
 removed_val = linked_list.pop()

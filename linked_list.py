@@ -39,19 +39,16 @@ class LinkedList:
     # Remove node from end, and return removed value
     def pop(self):
         removed_val = None
-        
+
         if self.length == 0:
             return None
         elif self.length == 1:
             removed_val = self.head.value
             self.head, self.tail, self.length = None, None, 0
         else:
-            second_last_node = None # will be set equal to second
-            for i in range(self.length - 1):
-                if i == 0:
-                    second_last_node = self.head
-                else:
-                    second_last_node = second_last_node.next
+            second_last_node = self.head
+            for i in range(self.length - 2):
+                second_last_node = second_last_node.next
 
             removed_val = second_last_node.next.value
             second_last_node.next = None
@@ -96,7 +93,7 @@ class LinkedList:
 
 linked_list = LinkedList(4)
 linked_list.prepend(7)
-# linked_list.append(10)
+linked_list.append(10)
 linked_list.print_list()
 print("---------------------")
 removed_val = linked_list.pop()

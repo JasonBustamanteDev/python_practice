@@ -57,7 +57,7 @@ class LinkedList:
 
         return removed_val
 
-    # Remove node from start and return removed value
+    # Remove node from start and return removed value O(1)
     def pop_first(self):
         removed_val = None
 
@@ -72,11 +72,11 @@ class LinkedList:
             original_head.next = None
             self.length -= 1
             removed_val = original_head.value
-        
+
         return removed_val
 
+    # Add node at index i
     def insert(self):
-        # GOAL: Add node at index i
         # If list is empty
         # If list has 1 node or more
         pass
@@ -87,11 +87,18 @@ class LinkedList:
         # If list has more than 1 node left
         pass
 
-    def lookup_by_value(self):
-        # GOAL: Find node with a value equal to the input
-        pass
+    # Return node with a value equal to the input
+    def lookup_by_value(self, target_val):
+        current_node = self.head
 
-    def lookup_by_index(self):
+        while current_node is not None:
+            if current_node.value == target_val:
+                return current_node
+            current_node = current_node.next
+
+        return None
+
+    def lookup_by_index(self, i):
         # GOAL: Find node at position i (keep in mind lLL's have no actual indexes)
         pass
 
@@ -105,12 +112,8 @@ class LinkedList:
 
 
 linked_list = LinkedList(6)
-linked_list.append(2)
+linked_list.append(5)
 linked_list.append(11)
-linked_list.print_list()
-
-print(linked_list.pop_first())
-print(linked_list.pop_first())
-print(linked_list.pop_first())
-print(linked_list.pop_first())
-linked_list.print_list()
+linked_list.append(-7)
+n = linked_list.lookup_by_value(51)
+# print(n.value if n.value else None, n.next.value if n.next else None)

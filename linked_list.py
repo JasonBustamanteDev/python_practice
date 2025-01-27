@@ -47,7 +47,7 @@ class LinkedList:
             self.head, self.tail, self.length = None, None, 0
         else:
             second_last_node = self.head
-            for i in range(self.length - 2):
+            for _ in range(self.length - 2):
                 second_last_node = second_last_node.next
 
             removed_val = second_last_node.next.value
@@ -98,9 +98,18 @@ class LinkedList:
 
         return None
 
-    def lookup_by_index(self, i):
-        # GOAL: Find node at position i (keep in mind lLL's have no actual indexes)
-        pass
+    # Return node at position i
+    def lookup_by_index(self, target_index):
+        curr_index, curr_node = 0, self.head
+
+        while curr_node is not None:
+            if curr_index == target_index:
+                return curr_node
+
+            curr_index += 1
+            curr_node = curr_node.next
+
+        return None
 
     def print_list(self):
         list = []
@@ -115,5 +124,5 @@ linked_list = LinkedList(6)
 linked_list.append(5)
 linked_list.append(11)
 linked_list.append(-7)
-n = linked_list.lookup_by_value(51)
-# print(n.value if n.value else None, n.next.value if n.next else None)
+n = linked_list.lookup_by_value(20)
+print(n)

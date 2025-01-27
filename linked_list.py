@@ -76,16 +76,27 @@ class LinkedList:
         return removed_val
 
     # Add node at index i
-    def insert(self):
+    def insert(self, target_index):
         # If list is empty
         # If list has 1 node or more
         pass
 
-    def remove(self):
-        # GOAL: Remove node at index i
-        # If list has 1 node left
-        # If list has more than 1 node left
-        pass
+    # Remove node at index i, then return the removed value (no negatove index functionality)
+    def remove(self, target_index):
+        if target_index >= self.length or target_index < 0:
+            return None
+        if target_index == self.length - 1:
+            return self.pop()
+        if target_index == 0:
+            return self.pop_first()
+
+        node_before_i = self.lookup_by_index(target_index - 1)
+        node_i = node_before_i.next
+        node_before_i.next = node_before_i.next.next
+        node_i.next = None
+        self.length -= 1
+
+        return node_i.value
 
     # Return node with a value equal to the input
     def lookup_by_value(self, target_val):
@@ -120,9 +131,10 @@ class LinkedList:
         print(f"Length {self.length} → {list}")
 
 
-linked_list = LinkedList(6)
-linked_list.append(5)
+linked_list = LinkedList(4)
+linked_list.append(-9)
 linked_list.append(11)
-linked_list.append(-7)
-n = linked_list.lookup_by_value(20)
-print(n)
+linked_list.print_list()
+
+print("Removing: ", linked_list.remove(1))
+linked_list.print_list()

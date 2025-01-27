@@ -57,11 +57,23 @@ class LinkedList:
 
         return removed_val
 
+    # Remove node from start and return removed value
     def pop_first(self):
-        # GOAL: Remove node from start
-        # If list only has 1 node left
-        # If list has more than 1 node left
-        pass
+        removed_val = None
+
+        if self.length == 0:
+            return None
+        elif self.length == 1:
+            removed_val = self.head.value
+            self.head, self.tail, self.length = None, None, 0
+        else:
+            original_head = self.head
+            self.head = self.head.next
+            original_head.next = None
+            self.length -= 1
+            removed_val = original_head.value
+        
+        return removed_val
 
     def insert(self):
         # GOAL: Add node at index i
@@ -84,18 +96,21 @@ class LinkedList:
         pass
 
     def print_list(self):
-        print("Length of LL is ", self.length)
+        list = []
         temp = self.head
         while temp is not None:
-            print(temp.value)
+            list.append(temp.value)
             temp = temp.next
+        print(f"Length {self.length} → {list}")
 
 
-linked_list = LinkedList(4)
-linked_list.prepend(7)
-linked_list.append(10)
+linked_list = LinkedList(6)
+linked_list.append(2)
+linked_list.append(11)
 linked_list.print_list()
-print("---------------------")
-removed_val = linked_list.pop()
-print("removed_val", removed_val)
+
+print(linked_list.pop_first())
+print(linked_list.pop_first())
+print(linked_list.pop_first())
+print(linked_list.pop_first())
 linked_list.print_list()

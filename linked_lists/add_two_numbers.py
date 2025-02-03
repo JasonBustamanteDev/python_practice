@@ -6,6 +6,13 @@ class ListNode:
 
 class Solution:
     def addTwoNumbers(self, l1, l2):
+        if l1 is None and l2 is None:
+            return None
+        if l1 is None:
+            return l2
+        if l2 is None:
+            return l1
+        
         n1, n2 = l1, l2
         carry_over = 0
         temp_head = ListNode(-99)
@@ -21,7 +28,7 @@ class Solution:
                 curr_node.next = ListNode(sum)
             else:
                 carry_over = 1
-                curr_node.next = ListNode(sum - 10)
+                curr_node.next = ListNode(sum-10)
 
             curr_node = curr_node.next
 
@@ -32,7 +39,7 @@ class Solution:
         if carry_over == 1:
             curr_node.next = ListNode(1)
             curr_node = curr_node.next
-
+        
         return temp_head.next
 
 
@@ -43,11 +50,3 @@ n = sol
 while n:
     print(n.__dict__)
     n = n.next
-
-# l1 = ListNode(0)
-# l2 = ListNode(0)
-# sol = Solution().addTwoNumbers(l1, l2)
-# n = sol
-# while n:
-#     print(n.__dict__)
-#     n = n.next

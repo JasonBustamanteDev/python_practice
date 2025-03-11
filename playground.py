@@ -1,53 +1,51 @@
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.prev = None
+        self.next = None
 
 
-class Solution:
-    def addTwoNumbers(self, l1, l2):
-        n1, n2 = l1, l2
-        carry_over = 0
-        temp_head = ListNode(-99)
-        curr_node = temp_head
+class DoublyLinkedList:
+    def __init__(self, value):
+        new_node = Node(value)
+        self.head, self.tail, self.length = new_node, new_node, 1
 
-        while n1 is not None or n2 is not None:
-            n1_val = n1.val if n1 is not None else 0
-            n2_val = n2.val if n2 is not None else 0
+    # Add node to end
+    def append(self, val):
+        pass
 
-            sum = n1_val + n2_val + carry_over
-            if sum < 10:
-                carry_over = 0
-                curr_node.next = ListNode(sum)
-            else:
-                carry_over = 1
-                curr_node.next = ListNode(sum - 10)
+    # Add node to start
+    def prepend(self, val):
+        pass
 
-            curr_node = curr_node.next
+    # Remove node from end, then return removed value
+    def pop(self):
+        pass
 
-            n1 = n1.next if n1 is not None else None
-            n2 = n2.next if n2 is not None else None
-            
-        # Perform final carryover if last sum ended up being above 10
-        if carry_over == 1:
-            curr_node.next = ListNode(1)
-            curr_node = curr_node.next
+    # Remove node from start and return removed value
+    def pop_first(self):
+        pass
 
-        return temp_head.next
+    # Add node at index i
+    def insert(self, target_index, val):
+        pass
 
+    # Remove node at index i, then return the removed value
+    def remove(self, target_index):
+        pass
 
-l1 = ListNode(9, ListNode(9))
-l2 = ListNode(1, ListNode(1))
-sol = Solution().addTwoNumbers(l1, l2)
-n = sol
-while n:
-    print(n.__dict__)
-    n = n.next
+    # Return node with a value equal to the input
+    def lookup_by_value(self, target_val):
+        pass
 
-# l1 = ListNode(0)
-# l2 = ListNode(0)
-# sol = Solution().addTwoNumbers(l1, l2)
-# n = sol
-# while n:
-#     print(n.__dict__)
-#     n = n.next
+    # Return node at position i
+    def lookup_by_index(self, target_index):
+        pass
+
+    def print_list(self):
+        list = []
+        temp = self.head
+        while temp is not None:
+            list.append(temp.value)
+            temp = temp.next
+        print(f"Length {self.length} → {list}")

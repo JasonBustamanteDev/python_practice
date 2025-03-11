@@ -23,7 +23,7 @@ class DoublyLinkedList:
             new_node.prev = self.tail
             self.tail = new_node
 
-    # Add node to start
+    # Add node to start O(1)
     def prepend(self, val):
         new_node = Node(val)
 

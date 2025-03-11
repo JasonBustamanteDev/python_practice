@@ -36,7 +36,7 @@ class DoublyLinkedList:
             self.head.prev = new_node
             self.head = new_node
 
-    # Remove node from end, then return removed value
+    # Remove node from end, then return removed value O(1)
     def pop(self):
         if self.length == 1:
             removed_value = self.head.value
@@ -45,6 +45,7 @@ class DoublyLinkedList:
         else:
             removed_value = self.tail.value
             self.length -= 1
+
             node_before_tail = self.tail.prev
             node_before_tail.next = None
             self.tail.prev = None
@@ -52,9 +53,22 @@ class DoublyLinkedList:
 
         return removed_value
 
-    # Remove node from start and return removed value
+    # Remove node from start and return removed value O(1)
     def pop_first(self):
-        pass
+        if self.length == 1:
+            removed_value = self.head.value
+            self.length = 0
+            self.head, self.tail = None, None
+        else:
+            removed_value = self.head.value
+            self.length -= 1
+
+            node_after_head = self.head.next
+            self.head.next = None
+            node_after_head.prev = None
+            self.head = node_after_head
+
+        return removed_value
 
     # Add node at index i
     def insert(self, target_index, val):
@@ -81,8 +95,8 @@ class DoublyLinkedList:
         print(f"Length {self.length} → {list}")
 
 
-dll = DoublyLinkedList(11)
-dll.prepend(5)
-a = dll.pop()
+dll = DoublyLinkedList(5)
+dll.append(8)
+dll.append(1)
+dll.pop_first()
 dll.print_list()
-print(a)

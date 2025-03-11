@@ -38,7 +38,19 @@ class DoublyLinkedList:
 
     # Remove node from end, then return removed value
     def pop(self):
-        pass
+        if self.length == 1:
+            removed_value = self.head.value
+            self.length = 0
+            self.head, self.tail = None, None
+        else:
+            removed_value = self.tail.value
+            self.length -= 1
+            node_before_tail = self.tail.prev
+            node_before_tail.next = None
+            self.tail.prev = None
+            self.tail = node_before_tail
+
+        return removed_value
 
     # Remove node from start and return removed value
     def pop_first(self):
@@ -71,4 +83,6 @@ class DoublyLinkedList:
 
 dll = DoublyLinkedList(11)
 dll.prepend(5)
+a = dll.pop()
 dll.print_list()
+print(a)

@@ -1,22 +1,40 @@
 class Node:
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, val):
+        self.value = val
         self.prev = None
         self.next = None
 
 
 class DoublyLinkedList:
-    def __init__(self, value):
-        new_node = Node(value)
+    def __init__(self, val):
+        new_node = Node(val)
         self.head, self.tail, self.length = new_node, new_node, 1
 
-    # Add node to end
+    # Add node to end O(1)
     def append(self, val):
-        pass
+        new_node = Node(val)
+
+        if self.length == 0:
+            self.length = 1
+            self.head, self.tail = new_node, new_node
+        else:
+            self.length += 1
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
 
     # Add node to start
     def prepend(self, val):
-        pass
+        new_node = Node(val)
+
+        if self.length == 0:
+            self.length = 1
+            self.head, self.tail = new_node, new_node
+        else:
+            self.length += 1
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
 
     # Remove node from end, then return removed value
     def pop(self):
@@ -49,3 +67,8 @@ class DoublyLinkedList:
             list.append(temp.value)
             temp = temp.next
         print(f"Length {self.length} → {list}")
+
+
+dll = DoublyLinkedList(11)
+dll.prepend(5)
+dll.print_list()

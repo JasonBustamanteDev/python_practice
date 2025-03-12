@@ -72,7 +72,33 @@ class DoublyLinkedList:
 
     # Add node at index i
     def insert(self, target_index, val):
-        pass
+        if target_index < 0 or target_index > self.length:
+            return False
+        elif target_index == self.length:
+            self.append(val)
+        elif target_index == 0:
+            self.prepend(val)
+        else:
+            temp_node, current_index = self.head, 0
+            while current_index <= target_index:
+                if current_index == target_index:
+                    node_before_target = temp_node.prev
+                    # Technically this is the node at the target index
+                    # But it will be shifted over by 1 soon (hence the name node_after_target)
+                    node_after_target = temp_node  
+                    break
+
+                temp_node = temp_node.next
+                current_index += 1
+
+            new_node = Node(val)
+            self.length += 1
+            node_before_target.next = new_node
+            new_node.prev = node_before_target
+            new_node.next = node_after_target
+            node_after_target.prev = new_node
+
+        return True
 
     # Remove node at index i, then return the removed value
     def remove(self, target_index):
@@ -98,5 +124,4 @@ class DoublyLinkedList:
 dll = DoublyLinkedList(5)
 dll.append(8)
 dll.append(1)
-dll.pop_first()
 dll.print_list()

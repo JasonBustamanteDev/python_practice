@@ -144,4 +144,9 @@ class LinkedList:
         print(f"Length {self.length} → {list}")
 
 
-linked_list = LinkedList(-1)
+linked_list = LinkedList(5)
+linked_list.append(8)
+linked_list.append(1)
+linked_list.print_list()
+linked_list.insert(1, 4)
+linked_list.print_list()
